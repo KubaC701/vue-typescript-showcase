@@ -1,26 +1,31 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+  <ul>
+    <li v-for="footballer in footballers" :key="footballer.name">{{ footballer.club.name }}</li>
+  </ul>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import HelloWorld from './components/HelloWorld.vue';
+import { computed, defineComponent } from 'vue';
+import { printFootballerData } from './helpers/footballer';
 import { useStore } from './store';
 import { ActionTypes } from './store/index.types';
 
 export default defineComponent({
   name: 'App',
-  components: {
-    HelloWorld,
-  },
   setup() {
     const store = useStore();
-    store.dispatch(ActionTypes.FETCH_FOOTBALLERS)
-  }
+    store.dispatch(ActionTypes.FETCH_FOOTBALLERS);
+
+    const footballers = computed(() => store.state.footballers);
+
+    const footballer = footballers.value[0];
+    printFootballerData(footballer);
+
+    store.dispatch(ActionTypes.CHANGE_POSITION, { footballer, position: 'goalkeeper' });
+
+    return {
+      footballers,
+    };
+  },
 });
 </script>
-
-<style>
-
-</style>

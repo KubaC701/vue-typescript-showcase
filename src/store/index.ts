@@ -1,3 +1,4 @@
+import { changePosition } from '@/helpers/footballer';
 import getFootballers from '@/services/getFootballers';
 import { createStore } from 'vuex';
 import {
@@ -35,6 +36,11 @@ export const actions: FootballersActions = {
     const footballers = getFootballers();
     commit(MutationTypes.SET_FOOTBALLERS, footballers);
     return footballers;
+  },
+  [ActionTypes.CHANGE_POSITION]({ commit }, {footballer, position}) {
+    const newPlayer = changePosition(footballer, position);
+    commit(MutationTypes.UPDATE_FOOTBALLER, newPlayer);
+    return newPlayer;
   },
 };
 

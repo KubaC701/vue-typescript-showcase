@@ -1,4 +1,4 @@
-import { Footballer } from '@/types/Footballer';
+import { Footballer, FootballerPosition } from '@/types/Footballer';
 import { ExtendedActionContext, ExtendedStore } from './types';
 
 export type FootballersState = {
@@ -12,6 +12,7 @@ export enum MutationTypes {
 
 export enum ActionTypes {
   FETCH_FOOTBALLERS = 'FETCH_FOOTBALLERS',
+  CHANGE_POSITION = 'CHANGE_POSITION',
 }
 
 export type FootballersMutations<S = FootballersState> = {
@@ -20,9 +21,13 @@ export type FootballersMutations<S = FootballersState> = {
 };
 
 export type FootballersActions = {
-  [ActionTypes.FETCH_FOOTBALLERS]({
-    commit,
-  }: ExtendedActionContext<FootballersState, FootballersMutations>): Footballer[];
+  [ActionTypes.FETCH_FOOTBALLERS](
+    context: ExtendedActionContext<FootballersState, FootballersMutations>,
+  ): Footballer[];
+  [ActionTypes.CHANGE_POSITION](
+    context: ExtendedActionContext<FootballersState, FootballersMutations>,
+    payload: {footballer: Footballer, position: FootballerPosition}
+  ): Footballer;
 };
 
 export type FootballersGetters = {

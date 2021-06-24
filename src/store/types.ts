@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { CommitOptions, DispatchOptions, Store as VuexStore, ActionContext } from 'vuex';
+import { CommitOptions, DispatchOptions, Store, ActionContext } from 'vuex';
 
 export type ExtendedActionContext<
   S extends Record<string, any>,
@@ -11,8 +11,8 @@ export type ExtendedActionContext<
 export type ExtendedStore<
   S extends Record<string, any>,
   M extends Record<string, (state: S, payload: any) => void>,
-  A extends Record<string, (context: ActionContext<S, S>) => any>
-> = Omit<VuexStore<S>, 'commit' | 'dispatch'> & {
+  A extends Record<string, (context: ActionContext<S, S>, payload: any) => any>
+> = Omit<Store<S>, 'commit' | 'dispatch'> & {
   commit<K extends keyof M, P extends Parameters<M[K]>[1]>(
     key: K,
     payload?: P,
