@@ -1,5 +1,4 @@
 import getFootballers from '@/services/getFootballers';
-import { Footballer } from '@/types/Footballer';
 import { createStore } from 'vuex';
 import {
   ActionTypes,
@@ -38,11 +37,12 @@ export const actions: FootballersActions = {
     return footballers;
   },
 };
-const store = createStore<{ footballers: Footballer[] }>({
+
+const store = createStore<FootballersState>({
   state,
   mutations,
   actions,
 });
 export default store;
 
-export const useStore = (): Store => store as Store;
+export const useStore = (): Store => store;
