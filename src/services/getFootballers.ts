@@ -2,6 +2,7 @@ import { Footballer } from '@/types/Footballer';
 
 export default (): Footballer[] => [
   {
+    id: 1,
     assists: 8,
     club: { name: 'Real Madrid', country: 'Spain', stadium: 'Santiago Bernabeu' },
     goals: 12,
@@ -10,6 +11,7 @@ export default (): Footballer[] => [
     position: 'striker',
   },
   {
+    id: 2,
     assists: 0,
     cleanSheets: 12,
     club: { name: 'Juventus F.C.', country: 'Italy', stadium: 'Allianz Stadium' },
@@ -19,6 +21,7 @@ export default (): Footballer[] => [
     position: 'goalkeeper',
   },
   {
+    id: 3,
     assists: 14,
     club: { name: 'Manchester City', country: 'England', stadium: 'Etihad Stadium' },
     goals: 8,

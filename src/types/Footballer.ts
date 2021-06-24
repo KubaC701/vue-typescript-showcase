@@ -3,6 +3,7 @@ import Club from './Club';
 export type FootballerPosition = 'goalkeeper' | 'defender' | 'midfielder' | 'striker';
 
 export interface CommonFootballer {
+  id: number,
   assists: number;
   club: Club;
   goals: number;
