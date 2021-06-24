@@ -1,15 +1,10 @@
-import { Footballer, FootballerPosition } from '@/types/Footballer';
-
-export const printFootballerData = (footballer: Footballer): void => {
-  console.log(`${footballer.name} ${footballer.club.name} ${footballer.goals}`);
+export const printFootballerData = (footballer) => {
+  
 };
 
 export const changePosition = (
-  footballer: Footballer,
-  position: FootballerPosition,
-): Footballer => {
-  if (position === 'goalkeeper') {
-    return { ...footballer, position, cleanSheets: 0 };
-  }
+  footballer,
+  position,
+) => {
   return { ...footballer, position };
 };

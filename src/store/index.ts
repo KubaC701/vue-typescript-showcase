@@ -1,12 +1,8 @@
-import { changePosition } from '@/helpers/footballer';
-import getFootballers from '@/services/getFootballers';
 import { createStore } from 'vuex';
 import {
-  ActionTypes,
   FootballersActions,
   FootballersMutations,
   FootballersState,
-  MutationTypes,
   Store,
 } from './index.types';
 
@@ -20,31 +16,17 @@ export const mutations: FootballersMutations = {
     currentState.footballers = data;
   },
   UPDATE_FOOTBALLER: (currentState, data) => {
-    const footballerToReplace = currentState.footballers.find(
-      footballer => data.name === footballer.name,
-    );
-    const updatedState = currentState.footballers.map(footballer =>
-      footballer.name === footballerToReplace?.name ? footballerToReplace : footballer,
-    );
+    const updatedState = currentState.footballers
     // eslint-disable-next-line no-param-reassign
     currentState.footballers = updatedState;
   },
 };
 
 export const actions: FootballersActions = {
-  [ActionTypes.FETCH_FOOTBALLERS]({ commit }) {
-    const footballers = getFootballers();
-    commit(MutationTypes.SET_FOOTBALLERS, footballers);
-    return footballers;
-  },
-  [ActionTypes.CHANGE_POSITION]({ commit }, {footballer, position}) {
-    const newPlayer = changePosition(footballer, position);
-    commit(MutationTypes.UPDATE_FOOTBALLER, newPlayer);
-    return newPlayer;
-  },
+
 };
 
-const store = createStore<FootballersState>({
+const store = createStore({
   state,
   mutations,
   actions,
